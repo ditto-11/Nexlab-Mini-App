@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nexlab_mini_app/blocs/login_bloc/index.dart';
+import 'package:nexlab_mini_app/screens/contact_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -43,7 +44,10 @@ class _LoginScreenState extends State<LoginScreen> {
       listener: (context, state) {
         if (state is LoginSuccess) {
           _showSnackBar(context, state.message, true);
-          // TODO: Navigate to next screen after successful login
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => const ContactScreen()),
+          );
         } else if (state is LoginFailure) {
           _showSnackBar(context, state.error, false);
         }
@@ -70,9 +74,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         // Title
                         Text(
                           'Welcome',
-                          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                                fontWeight: FontWeight.bold,
-                              ),
+                          style: Theme.of(context).textTheme.headlineMedium
+                              ?.copyWith(fontWeight: FontWeight.bold),
                           textAlign: TextAlign.center,
                         ),
                         const SizedBox(height: 8),
@@ -80,9 +83,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         // Subtitle
                         Text(
                           'Sign in to your account',
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                color: Colors.grey[600],
-                              ),
+                          style: Theme.of(context).textTheme.bodyMedium
+                              ?.copyWith(color: Colors.grey[600]),
                           textAlign: TextAlign.center,
                         ),
                         const SizedBox(height: 48),
@@ -133,11 +135,11 @@ class _LoginScreenState extends State<LoginScreen> {
                               ? null
                               : () {
                                   context.read<LoginBloc>().add(
-                                        LoginSubmitted(
-                                          email: _emailController.text.trim(),
-                                          password: _passwordController.text,
-                                        ),
-                                      );
+                                    LoginSubmitted(
+                                      email: _emailController.text.trim(),
+                                      password: _passwordController.text,
+                                    ),
+                                  );
                                 },
                           style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(vertical: 12),
@@ -162,9 +164,7 @@ class _LoginScreenState extends State<LoginScreen> {
               if (isLoading)
                 Container(
                   color: Colors.black.withOpacity(0.3),
-                  child: const Center(
-                    child: CircularProgressIndicator(),
-                  ),
+                  child: const Center(child: CircularProgressIndicator()),
                 ),
             ],
           ),

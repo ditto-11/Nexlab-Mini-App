@@ -72,7 +72,7 @@ To test AI's capability in resolving version control issues, I intentionally tri
 
 This project strictly follows the BLoC pattern to separate UI from business logic. I used AI as an accelerator to generate the structural boilerplate and UI components.
 
-### 1.1 Feat/login-ui Branch
+### 2.1 Feat/login-ui Branch
 
 - Prompt to generate login_screen.dart:
 
@@ -85,3 +85,17 @@ This project strictly follows the BLoC pattern to separate UI from business logi
     The event should take an email and password.
     The Bloc should simulate a 2-second network delay before emitting Success.
     Finally, wrap my LoginScreen widget with BlocProvider and use BlocConsumer inside the UI to show a CircularProgressIndicator while loading, and a SnackBar on success/failure."
+
+### 2.2 Feat/contact-list Branch
+
+- Prompt to generate UI and Logic for Contact list Screen:
+
+    "Act as a Senior Flutter Developer. I need the second screen for my Mini App: a Contact List.
+
+    Generate a ContactBloc (Event, State, Bloc) that yields Initial, Loading, Loaded (containing a List<Map<String, String>> of 5 mock contacts with names and phone numbers), and Error states. It should simulate a 1-second network delay.
+
+    Generate a ContactScreen UI that uses BlocProvider and BlocBuilder.
+
+    Use a ListView.builder with ListTile to display the contacts when the state is 'Loaded'. Show a CircularProgressIndicator while 'Loading'.
+
+    Ensure the fetch event is triggered inside initState or when the widget is built."
