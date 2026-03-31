@@ -111,3 +111,16 @@ This project strictly follows the BLoC pattern to separate UI from business logi
 
     Wrap the MaterialApp with a MultiBlocProvider that initializes both LoginBloc and ContactBloc at the root level. This will ensure I don't get any ProviderNotFoundException context errors when navigating between screens.
     Keep the code clean, remove all default Flutter boilerplate comments, and ensure proper imports."
+
+## 🐛 3. Debugging Log (Issues, Fixes, Lessons)
+
+To ensure code quality, I proactively used AI to perform a code audit on my completed architecture. The AI helped identify a hidden state management flaw that compiled perfectly but caused memory inefficiencies.
+
+### Issue 1: Redundant BLoC Instances & Context Shadowing
+
+### Issue 1: Redundant BLoC Instances & Context Shadowing
+
+- **The Issue:** I initially provided `LoginBloc` and `ContactBloc` globally at the root level in `main.dart` using a `MultiBlocProvider`. However, my individual `LoginScreen` and `ContactScreen` widgets were _also_ wrapping themselves in their own `BlocProvider`. This resulted in redundant BLoC instances in memory, where the nested local providers shadowed the global root providers.
+- **AI Debug Prompt:** > _"In my Flutter app, I am initializing `LoginBloc` and `ContactBloc` globally in `main.dart` using a `MultiBlocProvider`. However, my `LoginScreen` and `ContactScreen` also wrap themselves in their own `BlocProvider`. Is this redundant? What are the implications for memory and context lookup in Flutter, and what is the best practice to fix it?"_
+- **The Fix:** Copilot confirmed this causes context shadowing and memory leaks, as the root BLoCs are never used but exist for the app's lifetime. To fix it, I removed the `MultiBlocProvider` wrapper from `main.dart`. I refactored the app to let the individual screen routes manage their own BLoC lifecycles locally, following the Single Responsibility Principle.
+- **Lesson Learned:** I deepened my understanding of Flutter's `BuildContext` hierarchy—specifically how `context.read<T>()` traverses _up_ the tree and returns the closest instance, and why scoping state locally is better for memory management than defaulting to global state.
