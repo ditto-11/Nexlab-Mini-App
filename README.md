@@ -99,3 +99,15 @@ This project strictly follows the BLoC pattern to separate UI from business logi
     Use a ListView.builder with ListTile to display the contacts when the state is 'Loaded'. Show a CircularProgressIndicator while 'Loading'.
 
     Ensure the fetch event is triggered inside initState or when the widget is built."
+
+### 2.3 App Entry Point & Global State Setup
+
+- Prompt to update main.dart with new screen and logic:
+  "Act as a Senior Flutter Architect. I have completed my LoginScreen and ContactScreen and their respective Blocs (LoginBloc, ContactBloc). Now, rewrite my lib/main.dart file from scratch to tie the app together.
+
+    Initialize a MaterialApp using Material 3 and a clean colorScheme.
+
+    Set the home widget to LoginScreen.
+
+    Wrap the MaterialApp with a MultiBlocProvider that initializes both LoginBloc and ContactBloc at the root level. This will ensure I don't get any ProviderNotFoundException context errors when navigating between screens.
+    Keep the code clean, remove all default Flutter boilerplate comments, and ensure proper imports."
