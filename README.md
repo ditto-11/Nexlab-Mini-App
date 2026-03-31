@@ -71,3 +71,9 @@ To test AI's capability in resolving version control issues, I intentionally tri
 ## 🏗️ 2. AI-Assisted Development (Architecture & UI)
 
 This project strictly follows the BLoC pattern to separate UI from business logic. I used AI as an accelerator to generate the structural boilerplate and UI components.
+
+### 1.1 Feat/login-ui Branch
+
+- Prompt to generate login_screen.dart:
+
+    "Act as a Senior Flutter Developer. I am building a Mini App. Generate the code for a clean, minimalist Login Screen using standard Material Design widgets. It should have a TextField for Email, a TextField for Password (obscured), and an ElevatedButton for Submit. Do not include any state management or logic yet, just the pure stateless/stateful UI. Put this in a file called login_screen.dart."
