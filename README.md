@@ -77,3 +77,11 @@ This project strictly follows the BLoC pattern to separate UI from business logi
 - Prompt to generate login_screen.dart:
 
     "Act as a Senior Flutter Developer. I am building a Mini App. Generate the code for a clean, minimalist Login Screen using standard Material Design widgets. It should have a TextField for Email, a TextField for Password (obscured), and an ElevatedButton for Submit. Do not include any state management or logic yet, just the pure stateless/stateful UI. Put this in a file called login_screen.dart."
+
+- Prompt for BLoC boilerplate:
+
+    "Act as a Senior Flutter Developer. I have a static Login UI. Now, generate the flutter_bloc boilerplate (Event, State, and Bloc classes) to handle a mock authentication flow.
+    The state should have Initial, Loading, Success, and Failure.
+    The event should take an email and password.
+    The Bloc should simulate a 2-second network delay before emitting Success.
+    Finally, wrap my LoginScreen widget with BlocProvider and use BlocConsumer inside the UI to show a CircularProgressIndicator while loading, and a SnackBar on success/failure."
